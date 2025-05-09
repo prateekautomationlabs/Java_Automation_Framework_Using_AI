@@ -10,8 +10,9 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        // Initialize driver with desired browser and mode
-        DriverFactory.initDriver("chrome", false); // Set true for headless
+        String headlessProperty = System.getProperty("headless", "false");
+        boolean headless = Boolean.parseBoolean(headlessProperty);
+        DriverFactory.initDriver("chrome", headless);
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
         driver.get("https://www.automationexercise.com/");

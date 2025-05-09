@@ -39,6 +39,8 @@ public class DriverFactory {
             options.addArguments("--disable-gl-drawing-for-tests");
             options.addArguments("--mute-audio");
             options.addArguments("--remote-allow-origins=*");
+            String tmpUserDataDir = System.getProperty("java.io.tmpdir") + "/chrome-user-data-" + Thread.currentThread().getId();
+            options.addArguments("--user-data-dir=" + tmpUserDataDir);
 
             driver.set(new ChromeDriver(options));
 

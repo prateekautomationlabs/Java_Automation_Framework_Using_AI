@@ -34,8 +34,15 @@ jobs:
       - name: Install dependencies
         run: mvn clean install -DskipTests
 
+      - name: Setup Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+          google-chrome --version
+
       - name: Run UI Tests (Headless)
         run: mvn test -Dsurefire.suiteXmlFiles=testng.xml -Dheadless=true
 
       - name: Run API Tests
         run: mvn test -Dsurefire.suiteXmlFiles=testng-api.xml
+

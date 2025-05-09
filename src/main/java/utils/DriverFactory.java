@@ -27,12 +27,23 @@ public class DriverFactory {
                 options.addArguments("--window-size=1920,1080");
             }
 
+// Hardened arguments for CI Linux containers:
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--disable-extensions");
             options.addArguments("--disable-infobars");
+            options.addArguments("--disable-popup-blocking");
+            options.addArguments("--disable-background-networking");
+            options.addArguments("--disable-default-apps");
+            options.addArguments("--disable-sync");
+            options.addArguments("--metrics-recording-only");
+            options.addArguments("--disable-gl-drawing-for-tests");
+            options.addArguments("--mute-audio");
             options.addArguments("--remote-allow-origins=*");
 
+// 💡 Temporary unique user data dir (safe even in parallel CI)
+            String tempProfile = "/tmp/chrome-profile-" + UUID.randomUUID();
+            options.addArguments("--user-data-dir=" + tempProfile);
 
             driver.set(new ChromeDriver(options));
 

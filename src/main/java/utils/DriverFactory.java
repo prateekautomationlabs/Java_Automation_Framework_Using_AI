@@ -4,12 +4,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
 import org.openqa.selenium.chrome.ChromeOptions;
+import java.util.UUID;
 
 public class DriverFactory {
 
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     /**
      * Initializes the WebDriver instance based on the specified browser and mode.
@@ -20,16 +20,32 @@ public class DriverFactory {
     public static void initDriver(String browser, boolean headless) {
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
+
             if (headless) {
                 options.addArguments("--headless=new");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--window-size=1920,1080");
             }
+
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-extensions");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--remote-allow-origins=*");
+
+            // Generate a unique temporary profile directory for each thread
+            String uniqueProfile = System.getProperty("java.io.tmpdir") + "/chrome-profile-" + UUID.randomUUID();
+            options.addArguments("--user-data-dir=" + uniqueProfile);
+
             driver.set(new ChromeDriver(options));
+
         } else if (browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             if (headless) {
                 options.addArguments("--headless");
             }
             driver.set(new FirefoxDriver(options));
+
         } else {
             throw new IllegalArgumentException("Unsupported browser: " + browser);
         }

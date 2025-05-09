@@ -26,22 +26,6 @@ public class DriverFactory {
                 options.addArguments("--disable-gpu");
                 options.addArguments("--window-size=1920,1080");
             }
-
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--disable-extensions");
-            options.addArguments("--disable-infobars");
-            options.addArguments("--disable-popup-blocking");
-            options.addArguments("--disable-background-networking");
-            options.addArguments("--disable-default-apps");
-            options.addArguments("--disable-sync");
-            options.addArguments("--metrics-recording-only");
-            options.addArguments("--disable-gl-drawing-for-tests");
-            options.addArguments("--mute-audio");
-            options.addArguments("--remote-allow-origins=*");
-            String tmpUserDataDir = System.getProperty("java.io.tmpdir") + "/chrome-user-data-" + Thread.currentThread().getId();
-            options.addArguments("--user-data-dir=" + tmpUserDataDir);
-
             driver.set(new ChromeDriver(options));
 
 

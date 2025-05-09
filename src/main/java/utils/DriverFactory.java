@@ -33,9 +33,6 @@ public class DriverFactory {
             options.addArguments("--disable-infobars");
             options.addArguments("--remote-allow-origins=*");
 
-            // Generate a unique temporary profile directory for each thread
-            String uniqueProfile = System.getProperty("java.io.tmpdir") + "/chrome-profile-" + UUID.randomUUID();
-            options.addArguments("--user-data-dir=" + uniqueProfile);
 
             driver.set(new ChromeDriver(options));
 

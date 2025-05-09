@@ -1,4 +1,4 @@
-name: Run UI and API Test Suites
+name: Run UI and API Test Suites on PR
 
 on:
   pull_request:

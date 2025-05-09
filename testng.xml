@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="QA Automation Framework FromAI - UI Suite" parallel="tests" thread-count="2">
+    <test name="Home Page Tests">
+        <classes>
+            <class name="tests.HomePageTest"/>
+        </classes>
+    </test>
+
+    <test name="Login Page Tests">
+        <classes>
+            <class name="tests.LoginPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Products Page Tests">
+        <classes>
+            <class name="tests.ProductsPageTest"/>
+        </classes>
+    </test>
+
+    <test name="Contact Us Page Tests">
+        <classes>
+            <class name="tests.ContactUsPageTest"/>
+        </classes>
+    </test>
+</suite>

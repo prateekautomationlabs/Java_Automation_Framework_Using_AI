@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="QA Automation Framework FromAI - UI Suite" parallel="tests" thread-count="2">
+    <listeners> <listener class-name="utils.ExtentReporterListener" /> </listeners>
     <test name="Home Page Tests">
         <classes>
             <class name="tests.HomePageTest"/>
